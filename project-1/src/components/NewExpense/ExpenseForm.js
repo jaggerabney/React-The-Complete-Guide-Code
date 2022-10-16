@@ -9,29 +9,18 @@ function ExpenseForm() {
     enteredDate: "",
   });
 
-  function titleChangeHandler(event) {
-    setUserInput((prevState) => {
-      return {
-        ...prevState,
-        enteredTitle: event.target.value,
-      };
-    });
-  }
+  function formChangeHandler(event) {
+    const propertyTypes = {
+      text: "enteredTitle",
+      number: "enteredAmount",
+      date: "enteredDate",
+    };
+    const property = propertyTypes[event.currentTarget.type];
 
-  function amountChangeHandler(event) {
     setUserInput((prevState) => {
       return {
         ...prevState,
-        enteredAmount: event.target.value,
-      };
-    });
-  }
-
-  function dateChangeHandler(event) {
-    setUserInput((prevState) => {
-      return {
-        ...prevState,
-        enteredDate: event.target.value,
+        [property]: event.target.value,
       };
     });
   }
@@ -41,7 +30,7 @@ function ExpenseForm() {
       <div className="new-expense__controls">
         <div className="new-expense__control">
           <label>Title</label>
-          <input type="text" onChange={titleChangeHandler} />
+          <input type="text" onChange={formChangeHandler} />
         </div>
         <div className="new-expense__control">
           <label>Amount</label>
@@ -49,7 +38,7 @@ function ExpenseForm() {
             type="number"
             min="0.01"
             step="0.01"
-            onChange={amountChangeHandler}
+            onChange={formChangeHandler}
           />
         </div>
         <div className="new-expense__control">
@@ -58,7 +47,7 @@ function ExpenseForm() {
             type="date"
             min="2019-01-01"
             max="2023-12-31"
-            onChange={dateChangeHandler}
+            onChange={formChangeHandler}
           />
         </div>
       </div>
