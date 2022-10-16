@@ -27,7 +27,7 @@ function App() {
   ];
 
   function submitHandler(event) {
-    console.log(event);
+    // nothing yet
   }
 
   return (
