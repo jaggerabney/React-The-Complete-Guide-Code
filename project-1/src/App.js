@@ -1,3 +1,5 @@
+import React, { Fragment } from "react";
+
 import NewExpense from "./components/NewExpense/NewExpense";
 import Expenses from "./components/Expenses/Expenses";
 
@@ -29,10 +31,10 @@ function App() {
   }
 
   return (
-    <div>
+    <Fragment>
       <NewExpense onSubmit={submitHandler} />
       <Expenses expenses={expenses} />
-    </div>
+    </Fragment>
   );
 }
 
