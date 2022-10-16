@@ -24,9 +24,13 @@ function App() {
     },
   ];
 
+  function submitHandler(event) {
+    console.log(event);
+  }
+
   return (
     <div>
-      <NewExpense />
+      <NewExpense onSubmit={submitHandler} />
       <Expenses expenses={expenses} />
     </div>
   );

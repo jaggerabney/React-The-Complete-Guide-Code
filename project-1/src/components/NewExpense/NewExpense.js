@@ -4,10 +4,19 @@ import ExpenseForm from "./ExpenseForm";
 import Card from "../UI/Card";
 import "./NewExpense.css";
 
-function NewExpense() {
+function NewExpense(props) {
+  function submitHandler(event) {
+    const expenseData = {
+      ...event,
+      id: Math.random().toString(),
+    };
+
+    props.onSubmit(expenseData);
+  }
+
   return (
     <Card className="new-expense">
-      <ExpenseForm />
+      <ExpenseForm onSubmit={submitHandler} />
     </Card>
   );
 }
