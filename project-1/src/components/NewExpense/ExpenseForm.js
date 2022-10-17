@@ -2,6 +2,12 @@ import React, { useState } from "react";
 
 import "./ExpenseForm.css";
 
+const PROPERTY_TYPES = {
+  text: "enteredTitle",
+  number: "enteredAmount",
+  date: "enteredDate",
+};
+
 function ExpenseForm(props) {
   const [userInput, setUserInput] = useState({
     enteredTitle: "",
@@ -10,12 +16,7 @@ function ExpenseForm(props) {
   });
 
   function formChangeHandler(event) {
-    const propertyTypes = {
-      text: "enteredTitle",
-      number: "enteredAmount",
-      date: "enteredDate",
-    };
-    const property = propertyTypes[event.currentTarget.type];
+    const property = PROPERTY_TYPES[event.currentTarget.type];
 
     setUserInput((prevState) => {
       return {
