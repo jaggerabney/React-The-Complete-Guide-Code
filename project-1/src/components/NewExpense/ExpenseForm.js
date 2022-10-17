@@ -42,6 +42,10 @@ function ExpenseForm(props) {
     props.onSubmit(expenseData);
   }
 
+  function formVisibiltyChangeHandler() {
+    props.onChange();
+  }
+
   return (
     <form onSubmit={submitHandler}>
       <div className="new-expense__controls">
@@ -75,6 +79,7 @@ function ExpenseForm(props) {
         </div>
       </div>
       <div className="new-expense__actions">
+        <button onClick={formVisibiltyChangeHandler}>Cancel</button>
         <button type="submit">Add Expense</button>
       </div>
     </form>

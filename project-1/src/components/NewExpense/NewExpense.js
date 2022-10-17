@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 
-import ExpenseForm from "./ExpenseForm";
+import FormManager from "./FormManager";
 import Card from "../UI/Card";
 import "./NewExpense.css";
 
 function NewExpense(props) {
+  const [formIsVisible, setFormIsVisible] = useState(false);
+
   function submitHandler(event) {
     const expenseData = {
       ...event,
@@ -12,11 +14,20 @@ function NewExpense(props) {
     };
 
     props.onSubmit(expenseData);
+    formVisibiltyChangeHandler();
+  }
+
+  function formVisibiltyChangeHandler() {
+    setFormIsVisible((prevState) => !prevState);
   }
 
   return (
     <Card className="new-expense">
-      <ExpenseForm onSubmit={submitHandler} />
+      <FormManager
+        onSubmit={submitHandler}
+        onChange={formVisibiltyChangeHandler}
+        visible={formIsVisible}
+      />
     </Card>
   );
 }
