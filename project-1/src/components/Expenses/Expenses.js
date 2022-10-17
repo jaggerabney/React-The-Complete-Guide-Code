@@ -16,14 +16,18 @@ function Expenses(props) {
     <Fragment>
       <Card className="expenses">
         <ExpensesFilter selected={selectedYear} onChange={changeHandler} />
-        {props.expenses.map((expense) => (
-          <ExpenseItem
-            key={expense.id}
-            title={expense.title}
-            amount={expense.amount}
-            date={expense.date}
-          />
-        ))}
+        {props.expenses
+          .filter(
+            (expense) => expense.date.getFullYear() === Number(selectedYear)
+          )
+          .map((expense) => (
+            <ExpenseItem
+              key={expense.id}
+              title={expense.title}
+              amount={expense.amount}
+              date={expense.date}
+            />
+          ))}
       </Card>
     </Fragment>
   );
