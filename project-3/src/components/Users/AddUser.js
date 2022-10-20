@@ -1,5 +1,6 @@
 import React, { Fragment, useState } from "react";
 
+import Wrapper from "../Helpers/Wrapper";
 import Card from "../UI/Card";
 import Button from "../UI/Button";
 import ErrorModal from "../UI/ErrorModal";
@@ -49,7 +50,7 @@ function AddUser(props) {
   }
 
   return (
-    <Fragment>
+    <Wrapper>
       {error && (
         <ErrorModal
           title={error.title}
@@ -76,7 +77,7 @@ function AddUser(props) {
           <Button type="submit">Add User</Button>
         </form>
       </Card>
-    </Fragment>
+    </Wrapper>
   );
 }
 
