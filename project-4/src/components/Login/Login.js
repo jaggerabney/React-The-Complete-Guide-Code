@@ -18,8 +18,10 @@ function passwordReducer(state, action) {
   if (action.type === "USER_INPUT") {
     return { value: action.value, isValid: action.value.length > 6 };
   } else if (action.type === "INPUT_BLUR") {
-    return { value: state.value, isValid: action.value.length > 6 };
+    return { value: state.value, isValid: state.value.length > 6 };
   }
+
+  return { value: "", isValid: false };
 }
 
 const Login = (props) => {
@@ -40,15 +42,13 @@ const Login = (props) => {
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
-      setFormIsValid(
-        emailState.isValid && passwordState.value.trim().length > 6
-      );
+      setFormIsValid(emailState.isValid && passwordState.isValid);
     }, 500);
 
     return () => {
       clearTimeout(timeoutId);
     };
-  }, [emailState, passwordState]);
+  }, [emailState.isValid, passwordState.isValid]);
 
   const emailChangeHandler = (event) => {
     dispatchEmail({
@@ -58,6 +58,8 @@ const Login = (props) => {
   };
 
   const passwordChangeHandler = (event) => {
+    console.log(passwordState.value);
+
     dispatchPassword({
       type: "USER_INPUT",
       value: event.target.value,
