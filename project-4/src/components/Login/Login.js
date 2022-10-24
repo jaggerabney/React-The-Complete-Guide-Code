@@ -120,7 +120,7 @@ const Login = (props) => {
         <Input
           ref={passwordInputRef}
           label="Password"
-          id="email"
+          id="password"
           type="password"
           value={passwordState.value}
           isValid={passwordState.isValid}
