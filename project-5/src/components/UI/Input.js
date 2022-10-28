@@ -6,7 +6,7 @@ function Input(props) {
   return (
     <div className={classes.input}>
       <label>Amount</label>
-      <input type="number" min="0" step="1" />
+      <input type="number" min="0" step="1" value="1" />
     </div>
   );
 }
