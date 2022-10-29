@@ -7,11 +7,11 @@ import classes from "./HeaderCartButton.module.css";
 function HeaderCartButton(props) {
   return (
     <button className={classes.button}>
-      <icon className={classes.icon}>
+      <div className={classes.icon}>
         <CartIcon />
-      </icon>
+      </div>
       Your Cart
-      <badge className={classes.badge}>0</badge>
+      <div className={classes.badge}>0</div>
     </button>
   );
 }

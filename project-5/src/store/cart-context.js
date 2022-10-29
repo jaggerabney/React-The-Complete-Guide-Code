@@ -1,21 +1,21 @@
-import React, { useState, useReducer } from "react";
+import React, { useReducer } from "react";
 
 const CartContext = React.createContext({
   items: {},
   totalQuantity: 0,
   totalPrice: 0.0,
-  onAdd: (item, quantity) => {},
-  onRemove: (id) => {},
+  addItem: ({ item, quantity }) => {},
+  removeItem: (id) => {},
 });
 
 function cartReducer(state, action) {
   if (action.type === "ADD") {
-    // add code here
+    console.log(action.value.item, action.value.quantity);
   } else if (action.type === "REMOVE") {
     // add code here
   }
 
-  return null;
+  return {};
 }
 
 export function CartContextProvider(props) {
@@ -28,7 +28,10 @@ export function CartContextProvider(props) {
   function cartAddHandler(event) {
     dispatchCart({
       type: "ADD",
-      value: event.target.value,
+      value: {
+        item: event.item,
+        quantity: event.quantity,
+      },
     });
   }
 
@@ -45,11 +48,13 @@ export function CartContextProvider(props) {
         items: cartState.items,
         totalQuantity: cartState.totalQuantity,
         totalPrice: cartState.totalPrice,
-        onAdd: cartAddHandler,
-        onRemove: cartRemoveHandler,
+        addItem: cartAddHandler,
+        removeItem: cartRemoveHandler,
       }}
     >
       {props.children}
     </CartContext.Provider>
   );
 }
+
+export default CartContext;

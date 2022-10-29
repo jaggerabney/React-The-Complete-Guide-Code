@@ -1,16 +1,17 @@
-import React, { Fragment } from "react";
+import React from "react";
 
 import AvailableMeals from "./components/Meals/AvailableMeals";
 import MealsSummary from "./components/Meals/MealsSummary";
 import Header from "./components/UI/Header";
+import { CartContextProvider } from "./store/cart-context";
 
 function App() {
   return (
-    <Fragment>
+    <CartContextProvider>
       <Header />
       <MealsSummary />
       <AvailableMeals />
-    </Fragment>
+    </CartContextProvider>
   );
 }
 
