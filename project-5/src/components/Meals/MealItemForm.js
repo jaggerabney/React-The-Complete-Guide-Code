@@ -6,15 +6,10 @@ import classes from "./MealItemForm.module.css";
 
 function MealItemForm(props) {
   const inputValue = useRef();
-  const cartContext = useContext(CartContext);
 
   function submitHandler(event) {
     event.preventDefault();
-
-    cartContext.addItem({
-      item: props.id,
-      quantity: inputValue.current.value,
-    });
+    props.onAdd(inputValue.current.value);
   }
 
   return (
