@@ -1,6 +1,5 @@
-import React, { useContext, useRef } from "react";
+import React, { useRef } from "react";
 import Input from "../UI/Input";
-import CartContext from "../../store/cart-context";
 
 import classes from "./MealItemForm.module.css";
 

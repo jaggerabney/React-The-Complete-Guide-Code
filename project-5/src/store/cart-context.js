@@ -1,9 +1,7 @@
 import React, { useReducer } from "react";
 
-import { DUMMY_MEALS } from "../resources/dummy-meals";
-
 const CartContext = React.createContext({
-  items: {},
+  items: [],
   totalQuantity: 0,
   totalPrice: 0.0,
   addItem: (item, quantity) => {},
@@ -12,12 +10,35 @@ const CartContext = React.createContext({
 
 function cartReducer(state, action) {
   if (action.type === "ADD") {
-    console.log(action.item, action.quantity);
+    const mealsWithoutQuantities = state.items.filter((meal) => meal.item);
+    let newItems;
+
+    if (mealsWithoutQuantities.includes(action.item)) {
+      const mealIndex = mealsWithoutQuantities.indexOf(action.item);
+      const oldMealItem = state.items[mealIndex].item;
+      const oldMealQuantity = state.items[mealIndex].quantity;
+      newItems = state.items;
+
+      newItems[mealIndex] = {
+        item: oldMealItem,
+        quantity: oldMealQuantity + state.quantity,
+      };
+    } else {
+      newItems = [
+        ...state.items,
+        {
+          item: action.item,
+          quantity: action.quantity,
+        },
+      ];
+    }
+
+    return { ...state, items: newItems };
   } else if (action.type === "REMOVE") {
     // add code here
   }
 
-  return {};
+  return state;
 }
 
 export function CartContextProvider(props) {
