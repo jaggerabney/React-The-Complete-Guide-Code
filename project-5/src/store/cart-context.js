@@ -1,7 +1,5 @@
 import React, { useReducer } from "react";
 
-import { DUMMY_MEALS } from "../resources/dummy-meals";
-
 const CartContext = React.createContext({
   items: [],
   totalQuantity: 0,
