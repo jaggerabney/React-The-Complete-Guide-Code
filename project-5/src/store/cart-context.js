@@ -1,5 +1,7 @@
 import React, { useReducer } from "react";
 
+import { DUMMY_MEALS } from "../resources/dummy-meals";
+
 const CartContext = React.createContext({
   items: [],
   totalQuantity: 0,
@@ -10,18 +12,19 @@ const CartContext = React.createContext({
 
 function cartReducer(state, action) {
   if (action.type === "ADD") {
-    const mealsWithoutQuantities = state.items.filter((meal) => meal.item);
+    const mealIDs = state.items.map((meal) => meal.item.id);
+    const actionMealID = action.item.id;
     let newItems;
 
-    if (mealsWithoutQuantities.includes(action.item)) {
-      const mealIndex = mealsWithoutQuantities.indexOf(action.item);
-      const oldMealItem = state.items[mealIndex].item;
-      const oldMealQuantity = state.items[mealIndex].quantity;
+    if (mealIDs.includes(actionMealID)) {
+      const actionMealIDIndex = mealIDs.indexOf(actionMealID);
       newItems = state.items;
 
-      newItems[mealIndex] = {
-        item: oldMealItem,
-        quantity: oldMealQuantity + state.quantity,
+      newItems[actionMealIDIndex] = {
+        item: action.item,
+        quantity:
+          Number(state.items[actionMealIDIndex].quantity) +
+          Number(action.quantity),
       };
     } else {
       newItems = [
@@ -62,6 +65,8 @@ export function CartContextProvider(props) {
       id: event.target.value,
     });
   }
+
+  console.log(cartState);
 
   return (
     <CartContext.Provider
