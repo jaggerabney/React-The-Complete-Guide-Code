@@ -12,7 +12,9 @@ function cartReducer(state, action) {
   if (action.type === "ADD") {
     const mealIDs = state.items.map((meal) => meal.item.id);
     const actionMealID = action.item.id;
-    let newItems;
+    let newItems = [],
+      newTotalQuantity = 0,
+      newTotalPrice = 0.0;
 
     if (mealIDs.includes(actionMealID)) {
       const actionMealIDIndex = mealIDs.indexOf(actionMealID);
@@ -34,7 +36,14 @@ function cartReducer(state, action) {
       ];
     }
 
-    return { ...state, items: newItems };
+    newTotalQuantity = state.totalQuantity + Number(action.quantity);
+    newTotalPrice = state.totalPrice + action.item.price * action.quantity;
+
+    return {
+      items: newItems,
+      totalQuantity: newTotalQuantity,
+      totalPrice: newTotalPrice,
+    };
   } else if (action.type === "REMOVE") {
     // add code here
   }
