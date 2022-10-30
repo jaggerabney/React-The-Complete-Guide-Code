@@ -31,7 +31,7 @@ function cartReducer(state, action) {
         ...state.items,
         {
           item: action.item,
-          quantity: action.quantity,
+          quantity: Number(action.quantity),
         },
       ];
     }
