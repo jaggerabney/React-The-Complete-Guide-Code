@@ -41,8 +41,8 @@ function CartItem(props) {
         </div>
       </div>
       <div className={classes.actions}>
-        <button onClick={addHandler}>+</button>
         <button onClick={removeHandler}>-</button>
+        <button onClick={addHandler}>+</button>
       </div>
     </li>
   );
