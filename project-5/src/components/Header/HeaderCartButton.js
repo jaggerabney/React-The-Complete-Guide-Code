@@ -2,7 +2,7 @@ import React, { Fragment, useContext, useEffect, useState } from "react";
 
 import CartContext from "../../store/cart-context";
 import CartIcon from "../../resources/CartIcon";
-import Modal from "./Modal";
+import Modal from "../UI/Modal";
 
 import classes from "./HeaderCartButton.module.css";
 
