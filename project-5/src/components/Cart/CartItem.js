@@ -24,7 +24,12 @@ function CartItem(props) {
     });
   }
 
-  function removeHandler() {}
+  function removeHandler() {
+    cartContext.removeItem({
+      id: props.id,
+      quantity: 1,
+    });
+  }
 
   return (
     <li className={classes["cart-item"]}>
