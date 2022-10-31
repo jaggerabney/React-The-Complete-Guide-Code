@@ -30,8 +30,10 @@ function Cart(props) {
         <div>{formattedPrice}</div>
       </div>
       <div className={classes.actions}>
-        <button>Cancel</button>
-        <button className={classes.button}>Order</button>
+        <button onClick={props.onClose}>Cancel</button>
+        <button onClick={props.onClose} className={classes.button}>
+          Order
+        </button>
       </div>
     </Fragment>
   );

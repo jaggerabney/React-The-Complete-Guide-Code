@@ -8,32 +8,24 @@ import classes from "./Modal.module.css";
 function ModalContent(props) {
   return (
     <div className={classes.modal}>
-      <Cart />
+      <Cart onClose={props.onClose} />
     </div>
   );
 }
 
 function ModalBackdrop(props) {
-  function clickHandler() {
-    props.onClick();
-  }
-
-  return <div onClick={clickHandler} className={classes.backdrop} />;
+  return <div onClick={props.onClick} className={classes.backdrop} />;
 }
 
 function Modal(props) {
-  function clickHandler() {
-    props.onClose();
-  }
-
   return (
     <Fragment>
       {ReactDOM.createPortal(
-        <ModalBackdrop onClick={clickHandler} />,
+        <ModalBackdrop onClick={props.onClose} />,
         document.getElementById("backdrop-root")
       )}
       {ReactDOM.createPortal(
-        <ModalContent />,
+        <ModalContent onClose={props.onClose} />,
         document.getElementById("overlay-root")
       )}
     </Fragment>
