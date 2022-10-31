@@ -19,6 +19,7 @@ function Cart(props) {
         {cartContext.items.map((meal) => (
           <CartItem
             key={meal.item.id}
+            id={meal.item.id}
             title={meal.item.name}
             price={meal.item.price}
             amount={meal.quantity}

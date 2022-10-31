@@ -1,12 +1,30 @@
-import React from "react";
+import React, { useContext } from "react";
+
+import CartContext from "../../store/cart-context";
 
 import classes from "./CartItem.module.css";
 
 function CartItem(props) {
+  const cartContext = useContext(CartContext);
+
   const formattedPrice = Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",
   }).format(props.price);
+
+  function addHandler() {
+    cartContext.addItem({
+      item: {
+        id: props.id,
+        name: props.title,
+        description: props.description,
+        price: Number(props.price),
+      },
+      quantity: 1,
+    });
+  }
+
+  function removeHandler() {}
 
   return (
     <li className={classes["cart-item"]}>
@@ -18,8 +36,8 @@ function CartItem(props) {
         </div>
       </div>
       <div className={classes.actions}>
-        <button>+</button>
-        <button>-</button>
+        <button onClick={addHandler}>+</button>
+        <button onClick={removeHandler}>-</button>
       </div>
     </li>
   );
