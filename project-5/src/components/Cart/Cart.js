@@ -13,6 +13,10 @@ function Cart(props) {
     currency: "USD",
   }).format(cartContext.totalPrice);
 
+  function orderHandler() {
+    window.location.reload();
+  }
+
   return (
     <Fragment>
       <ul className={classes["cart-items"]}>
@@ -32,7 +36,7 @@ function Cart(props) {
       </div>
       <div className={classes.actions}>
         <button onClick={props.onClose}>Cancel</button>
-        <button onClick={props.onClose} className={classes.button}>
+        <button onClick={orderHandler} className={classes.button}>
           Order
         </button>
       </div>
