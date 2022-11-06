@@ -1,4 +1,4 @@
-import { Component, Fragment, useState, useEffect } from "react";
+import { Component, Fragment } from "react";
 
 import Users from "./Users";
 
@@ -15,9 +15,13 @@ class UserFinder extends Component {
     super();
 
     this.state = {
-      filteredUsers: DUMMY_USERS,
+      filteredUsers: [],
       searchTerm: "",
     };
+  }
+
+  componentDidMount() {
+    this.setState({ filteredUsers: DUMMY_USERS });
   }
 
   componentDidUpdate(prevProps, prevState) {
