@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import useHttp from "./hooks/use-http";
 
 import Tasks from "./components/Tasks/Tasks";
@@ -7,7 +7,7 @@ import NewTask from "./components/NewTask/NewTask";
 function App() {
   const [tasks, setTasks] = useState([]);
 
-  function transformTasks(tasks) {
+  const transformTasks = (tasks) => {
     const loadedTasks = [];
 
     for (const taskKey in tasks) {
@@ -15,20 +15,18 @@ function App() {
     }
 
     setTasks(loadedTasks);
-  }
+  };
 
-  const {
-    isLoading,
-    error,
-    sendRequest: fetchTasks,
-  } = useHttp(
-    { url: "https://react-http-facab-default-rtdb.firebaseio.com/tasks.json" },
-    transformTasks
-  );
+  const { isLoading, error, sendRequest: fetchTasks } = useHttp();
 
   useEffect(() => {
-    fetchTasks();
-  }, []);
+    fetchTasks(
+      {
+        url: "https://react-http-facab-default-rtdb.firebaseio.com/tasks.json",
+      },
+      transformTasks
+    );
+  }, [fetchTasks]);
 
   const taskAddHandler = (task) => {
     setTasks((prevTasks) => prevTasks.concat(task));
