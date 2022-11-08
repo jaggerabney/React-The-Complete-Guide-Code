@@ -1,19 +1,32 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 const SimpleInput = (props) => {
-  const inputValueRef = useRef();
+  const [inputValue, setInputValue] = useState("");
 
   function submitHandler(event) {
     event.preventDefault();
 
-    console.log(inputValueRef.current.value);
+    if (inputValue.trim() === "") {
+      return;
+    }
+
+    setInputValue("");
+  }
+
+  function inputChangeHandler(event) {
+    setInputValue(event.target.value);
   }
 
   return (
     <form onSubmit={submitHandler}>
       <div className="form-control">
         <label htmlFor="name">Your Name</label>
-        <input ref={inputValueRef} type="text" id="name" />
+        <input
+          onChange={inputChangeHandler}
+          value={inputValue}
+          type="text"
+          id="name"
+        />
       </div>
       <div className="form-actions">
         <button>Submit</button>
