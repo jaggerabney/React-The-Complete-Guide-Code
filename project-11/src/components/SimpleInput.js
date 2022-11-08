@@ -2,42 +2,27 @@ import { useState } from "react";
 
 const SimpleInput = (props) => {
   const [inputValue, setInputValue] = useState("");
-  const [inputValueIsValid, setInputValueIsValid] = useState(false);
   const [inputTouched, setInputTouched] = useState(false);
+
+  const inputValueIsValid = inputValue.trim() !== "";
+  const inputIsInvalid = !inputValueIsValid && inputTouched;
 
   function submitHandler(event) {
     event.preventDefault();
 
-    setInputTouched(true);
-
-    if (inputValue.trim() === "") {
-      setInputValueIsValid(false);
-      return;
+    if (inputValueIsValid) {
+      setInputTouched(false);
+      setInputValue("");
     }
-
-    setInputValueIsValid(true);
-
-    setInputValue("");
   }
 
   function inputChangeHandler(event) {
     setInputValue(event.target.value);
-
-    if (event.target.value.trim() !== "") {
-      setInputValueIsValid(true);
-    }
   }
 
   function inputBlurHandler(event) {
     setInputTouched(true);
-
-    if (inputValue.trim() === "") {
-      setInputValueIsValid(false);
-      return;
-    }
   }
-
-  const inputIsInvalid = !inputValueIsValid && inputTouched;
 
   return (
     <form onSubmit={submitHandler}>
