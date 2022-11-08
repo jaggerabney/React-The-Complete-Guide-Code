@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const SimpleInput = (props) => {
   const [inputValue, setInputValue] = useState("");
@@ -6,6 +6,11 @@ const SimpleInput = (props) => {
 
   const inputValueIsValid = inputValue.trim() !== "";
   const inputIsInvalid = !inputValueIsValid && inputTouched;
+  let formIsValid = false;
+
+  if (inputValueIsValid) {
+    formIsValid = true;
+  }
 
   function submitHandler(event) {
     event.preventDefault();
@@ -40,7 +45,7 @@ const SimpleInput = (props) => {
         )}
       </div>
       <div className="form-actions">
-        <button>Submit</button>
+        <button disabled={!formIsValid}>Submit</button>
       </div>
     </form>
   );
