@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React from "react";
 import useInput from "../hooks/use-input";
 
 const SimpleInput = (props) => {
@@ -11,16 +11,25 @@ const SimpleInput = (props) => {
     reset: nameReset,
   } = useInput((value) => value.trim() !== "");
 
+  const {
+    value: emailInputValue,
+    isValid: emailInputValueIsValid,
+    hasError: emailInputIsInvalid,
+    inputChangeHandler: emailChangeHandler,
+    inputBlurHandler: emailBlurHandler,
+    reset: emailReset,
+  } = useInput((value) => value.trim() !== "" && value.includes("@"));
+
   // const [nameInputValue, setNameInputValue] = useState("");
   // const [nameInputTouched, setNameInputTouched] = useState(false);
-  const [emailInputValue, setEmailInputValue] = useState("");
-  const [emailInputTouched, setEmailInputTouched] = useState(false);
+  // const [emailInputValue, setEmailInputValue] = useState("");
+  // const [emailInputTouched, setEmailInputTouched] = useState(false);
 
   // const nameInputValueIsValid = nameInputValue.trim() !== "";
   // const nameInputIsInvalid = !nameInputValueIsValid && nameInputTouched;
-  const emailInputValueIsValid =
-    emailInputValue.trim() !== "" && emailInputValue.includes("@");
-  const emailInputIsInvalid = !emailInputValueIsValid && emailInputTouched;
+  // const emailInputValueIsValid =
+  //   emailInputValue.trim() !== "" && emailInputValue.includes("@");
+  // const emailInputIsInvalid = !emailInputValueIsValid && emailInputTouched;
   let formIsValid = false;
 
   if (nameInputValueIsValid && emailInputValueIsValid) {
@@ -32,18 +41,8 @@ const SimpleInput = (props) => {
 
     if (formIsValid) {
       nameReset();
-
-      setEmailInputTouched(false);
-      setEmailInputValue("");
+      emailReset();
     }
-  }
-
-  function emailChangeHandler(event) {
-    setEmailInputValue(event.target.value);
-  }
-
-  function emailBlurHandler() {
-    setEmailInputTouched(true);
   }
 
   return (
