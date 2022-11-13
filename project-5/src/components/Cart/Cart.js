@@ -14,8 +14,17 @@ function Cart(props) {
   }).format(cartContext.totalPrice);
 
   function orderHandler() {
-    window.location.reload();
+    props.onConfirm();
   }
+
+  const actions = (
+    <div className={classes.actions}>
+      <button onClick={props.onClose}>Cancel</button>
+      <button onClick={orderHandler} className={classes.button}>
+        Order
+      </button>
+    </div>
+  );
 
   return (
     <Fragment>
@@ -34,12 +43,7 @@ function Cart(props) {
         <div>Total Amount</div>
         <div>{formattedPrice}</div>
       </div>
-      <div className={classes.actions}>
-        <button onClick={props.onClose}>Cancel</button>
-        <button onClick={orderHandler} className={classes.button}>
-          Order
-        </button>
-      </div>
+      {props.showActions && actions}
     </Fragment>
   );
 }
