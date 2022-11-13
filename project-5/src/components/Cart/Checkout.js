@@ -1,4 +1,5 @@
 import classes from "./Checkout.module.css";
+import CheckoutInput from "./CheckoutInput";
 
 function Checkout(props) {
   function submitHandler(event) {
@@ -7,22 +8,34 @@ function Checkout(props) {
 
   return (
     <form className={classes.form} onSubmit={submitHandler}>
-      <div className={classes.control}>
-        <label htmlFor="name">Your name</label>
-        <input type="text" id="name" />
-      </div>
-      <div className={classes.control}>
-        <label htmlFor="street">Street</label>
-        <input type="text" id="street" />
-      </div>
-      <div className={classes.control}>
-        <label htmlFor="postal">ZIP code</label>
-        <input type="text" id="postal" />
-      </div>
-      <div className={classes.control}>
-        <label htmlFor="city">City</label>
-        <input type="text" id="city" />
-      </div>
+      <CheckoutInput
+        validationFunction={(value) => value.length > 0}
+        errorMessage="Your name must not be empty."
+        label="Your Name"
+        type="text"
+        id="name"
+      />
+      <CheckoutInput
+        validationFunction={(value) => value.length > 0}
+        errorMessage="Street address must not be empty."
+        label="Street Address"
+        type="text"
+        id="street"
+      />
+      <CheckoutInput
+        validationFunction={(value) => value.length > 0}
+        errorMessage="City must not be empty."
+        label="City"
+        type="text"
+        id="city"
+      />
+      <CheckoutInput
+        validationFunction={(value) => value.length === 5}
+        errorMessage="ZIP code must be five characters long."
+        label="ZIP Code"
+        type="text"
+        id="ZIP"
+      />
       <div className={classes.actions}>
         <button type="button" onClick={props.onCancel}>
           Cancel
