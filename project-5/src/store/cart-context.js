@@ -1,5 +1,4 @@
 import React, { useReducer } from "react";
-import { DUMMY_MEALS } from "../resources/dummy-meals";
 
 const CartContext = React.createContext({
   items: [],
@@ -51,7 +50,7 @@ function cartReducer(state, action) {
 
     if (mealIDs.includes(action.id)) {
       const actionMealIDIndex = mealIDs.indexOf(action.id);
-      const actionMeal = DUMMY_MEALS.find((meal) => meal.id === action.id);
+      const actionMeal = state.meals.find((meal) => meal.id === action.id);
 
       newItems[actionMealIDIndex] = {
         item: actionMeal,
@@ -71,6 +70,7 @@ function cartReducer(state, action) {
       }
 
       return {
+        meals: state.meals,
         items: newItems,
         totalQuantity: newTotalQuantity,
         totalPrice: newTotalPrice,
@@ -83,6 +83,7 @@ function cartReducer(state, action) {
 
 export function CartContextProvider(props) {
   const [cartState, dispatchCart] = useReducer(cartReducer, {
+    meals: props.meals,
     items: [],
     totalQuantity: 0,
     totalPrice: 0.0,

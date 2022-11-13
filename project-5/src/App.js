@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import useHttp from "./hooks/use-http";
 import DATABASE_URL from "./resources/database-url";
 
@@ -8,19 +8,28 @@ import Header from "./components/Header/Header";
 import { CartContextProvider } from "./store/cart-context";
 
 function App() {
+  const [mealsData, setMealsData] = useState([]);
   const { isLoading, error, sendRequest } = useHttp();
 
   useEffect(() => {
-    sendRequest({
-      url: DATABASE_URL,
-    });
-  }, []);
+    sendRequest(
+      {
+        url: DATABASE_URL + "dummy-meals.json",
+      },
+      setMealsData
+    );
+  }, [sendRequest]);
 
   return (
-    <CartContextProvider>
+    <CartContextProvider meals={mealsData}>
       <Header />
       <MealsSummary />
-      <AvailableMeals />
+      <AvailableMeals
+        meals={mealsData}
+        loading={isLoading}
+        error={error}
+        onFetch={sendRequest}
+      />
     </CartContextProvider>
   );
 }

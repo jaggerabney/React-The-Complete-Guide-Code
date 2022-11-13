@@ -11,6 +11,32 @@
   padding: 0;
 }
 
+.meals p {
+  display: flex;
+  justify-content: center;
+  font: inherit;
+}
+
+.meals .error-button {
+  display: flex;
+  margin: auto;
+  background-color: #8a2b06;
+  color: white;
+  border-radius: 12px;
+  border: 1px solid #8a2b06;
+  cursor: pointer;
+  padding: 1rem;
+  font: inherit;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+  font-weight: bold;
+}
+
+.meals .error-button:hover,
+.meals .error-button:active {
+  background-color: #4d1601;
+  box-shadow: 0 0 0;
+}
+
 @keyframes meals-appear {
   from {
     opacity: 0;
