@@ -30,8 +30,10 @@ function Checkout(props) {
         id="city"
       />
       <CheckoutInput
-        validationFunction={(value) => value.length === 5}
-        errorMessage="ZIP code must be five characters long."
+        validationFunction={(value) =>
+          value.length === 5 && /^\d+$/.test(value)
+        }
+        errorMessage="ZIP code must be a five-character number."
         label="ZIP Code"
         type="text"
         id="ZIP"

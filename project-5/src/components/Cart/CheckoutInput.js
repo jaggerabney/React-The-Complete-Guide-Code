@@ -6,8 +6,6 @@ import classes from "./CheckoutInput.module.css";
 function CheckoutInput(props) {
   const inputState = useInput(props.validationFunction);
 
-  console.log(inputState.hasError);
-
   return (
     <div
       className={`${classes.control} ${inputState.hasError && classes.invalid}`}
