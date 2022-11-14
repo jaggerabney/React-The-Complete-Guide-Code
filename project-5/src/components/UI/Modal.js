@@ -8,21 +8,42 @@ import classes from "./Modal.module.css";
 
 function ModalContent(props) {
   const [readyToOrder, setReadyToOrder] = useState(false);
+  const [orderIsSubmitting, setOrderIsSubmitting] = useState(false);
+  const [orderSubmitted, setOrderSubmitted] = useState(false);
 
-  function confirmHandler() {
-    setReadyToOrder(true);
-  }
-
-  return (
-    <div className={classes.modal}>
+  let content = (
+    <>
       <Cart
         showActions={!readyToOrder}
         onClose={props.onClose}
-        onConfirm={confirmHandler}
+        onConfirm={setReadyToOrder}
       />
-      {readyToOrder && <Checkout onCancel={props.onClose} />}
-    </div>
+      {readyToOrder && (
+        <Checkout
+          onComplete={setOrderSubmitted}
+          onSubmit={setOrderIsSubmitting}
+          onCancel={props.onClose}
+        />
+      )}
+    </>
   );
+
+  if (orderIsSubmitting) {
+    content = <div className={classes.text}>Submitting order...</div>;
+  } else if (orderSubmitted) {
+    content = (
+      <>
+        <div className={classes.text}>Order submitted!</div>
+        <div className={classes.actions}>
+          <button className={classes.button} onClick={props.onClose}>
+            Close
+          </button>
+        </div>
+      </>
+    );
+  }
+
+  return <div className={classes.modal}>{content}</div>;
 }
 
 function ModalBackdrop(props) {

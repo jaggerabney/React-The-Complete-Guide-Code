@@ -14,7 +14,7 @@ function Cart(props) {
   }).format(cartContext.totalPrice);
 
   function orderHandler() {
-    props.onConfirm();
+    props.onConfirm(true);
   }
 
   const actions = (

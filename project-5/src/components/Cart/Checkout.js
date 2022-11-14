@@ -11,7 +11,7 @@ import DATABASE_URL from "../../resources/database-url";
 function Checkout(props) {
   const cartContext = useContext(CartContext);
 
-  function submitHandler(event) {
+  async function submitHandler(event) {
     event.preventDefault();
 
     if (formIsValid) {
@@ -22,13 +22,20 @@ function Checkout(props) {
         ZIP: ZIPValue,
       };
 
-      fetch(DATABASE_URL + "orders.json", {
+      props.onSubmit(true);
+
+      await fetch(DATABASE_URL + "orders.json", {
         method: "POST",
         body: JSON.stringify({
           customer: customerDetails,
           order: cartContext.items,
         }),
       });
+
+      props.onSubmit(false);
+      props.onComplete(true);
+
+      cartContext.clearCart();
 
       nameReset();
       streetReset();
