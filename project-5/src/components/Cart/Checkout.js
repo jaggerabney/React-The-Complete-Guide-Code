@@ -1,17 +1,40 @@
-import React from "react";
-
+import React, { useContext } from "react";
 import useInput from "../../hooks/use-input";
-import classes from "./Checkout.module.css";
+
 import CheckoutInput from "./CheckoutInput";
+import CartContext from "../../store/cart-context";
+
+import classes from "./Checkout.module.css";
+
+import DATABASE_URL from "../../resources/database-url";
 
 function Checkout(props) {
+  const cartContext = useContext(CartContext);
+
   function submitHandler(event) {
     event.preventDefault();
 
-    nameReset();
-    streetReset();
-    cityReset();
-    ZIPReset();
+    if (formIsValid) {
+      const customerDetails = {
+        name: nameValue,
+        street: streetValue,
+        city: cityValue,
+        ZIP: ZIPValue,
+      };
+
+      fetch(DATABASE_URL + "orders.json", {
+        method: "POST",
+        body: JSON.stringify({
+          customer: customerDetails,
+          order: cartContext.items,
+        }),
+      });
+
+      nameReset();
+      streetReset();
+      cityReset();
+      ZIPReset();
+    }
   }
 
   const {
