@@ -7,7 +7,7 @@ function counterReducer(state = { counter: 0 }, action) {
     };
   } else if (action.type === "DECREMENT") {
     return {
-      counter: state.counter + 1,
+      counter: state.counter - 1,
     };
   }
 
