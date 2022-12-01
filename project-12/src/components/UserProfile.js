@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+
 import classes from "./UserProfile.module.css";
 
 const UserProfile = () => {
