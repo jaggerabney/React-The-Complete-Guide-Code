@@ -7,6 +7,9 @@ import classes from "./Counter.module.css";
 const Counter = () => {
   const counter = useSelector((state) => state.counter.counter);
   const showCounter = useSelector((state) => state.counter.showCounter);
+
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+
   const dispatch = useDispatch();
 
   function incrementHandler() {
@@ -26,16 +29,20 @@ const Counter = () => {
   }
 
   return (
-    <main className={classes.counter}>
-      <h1>Redux Counter</h1>
-      {showCounter && <div className={classes.value}>{counter}</div>}
-      <div>
-        <button onClick={decrementHandler}>Decrement by 1</button>
-        <button onClick={incrementHandler}>Increment by 1</button>
-        <button onClick={increaseHandler}>Increment by 5</button>
-      </div>
-      <button onClick={toggleCounterHandler}>Toggle Counter</button>
-    </main>
+    <>
+      {isAuthenticated && (
+        <main className={classes.counter}>
+          <h1>Redux Counter</h1>
+          {showCounter && <div className={classes.value}>{counter}</div>}
+          <div>
+            <button onClick={decrementHandler}>Decrement by 1</button>
+            <button onClick={incrementHandler}>Increment by 1</button>
+            <button onClick={increaseHandler}>Increment by 5</button>
+          </div>
+          <button onClick={toggleCounterHandler}>Toggle Counter</button>
+        </main>
+      )}
+    </>
   );
 };
 
