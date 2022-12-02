@@ -1,11 +1,14 @@
+import { useSelector } from "react-redux";
 import Cart from "./components/Cart/Cart";
 import Layout from "./components/Layout/Layout";
 import Products from "./components/Shop/Products";
 
 function App() {
+  const cartIsVisible = useSelector((state) => state.cart.isVisible);
+
   return (
     <Layout>
-      <Cart />
+      {cartIsVisible && <Cart />}
       <Products />
     </Layout>
   );
@@ -15,7 +18,6 @@ export default App;
 
 // Todo:
 
-// - My Cart button toggles Cart
 // - Add to Cart adds one of that product to the Cart
 //   - If a product already is in the Cart, this button should increase its quantity by one
 // - The + and - buttons for products in the Cart work
