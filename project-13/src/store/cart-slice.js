@@ -14,7 +14,7 @@ const cartSlice = createSlice({
       // add code here
     },
     toggleVisibility(state) {
-      // add code here
+      state.isVisible = !state.isVisible;
     },
   },
 });
