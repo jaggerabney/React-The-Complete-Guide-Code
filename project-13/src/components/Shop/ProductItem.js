@@ -13,7 +13,6 @@ const ProductItem = (props) => {
         name: title,
         quantity: 1,
         price,
-        description,
       })
     );
   }
