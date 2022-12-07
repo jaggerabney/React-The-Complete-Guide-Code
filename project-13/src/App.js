@@ -17,9 +17,3 @@ function App() {
 export default App;
 
 // Todo:
-
-// - Add to Cart adds one of that product to the Cart
-//   - If a product already is in the Cart, this button should increase its quantity by one
-// - The + and - buttons for products in the Cart work
-//   - If done when there is only one of a product in the Cart,
-//   - the product is removed from the Cart
