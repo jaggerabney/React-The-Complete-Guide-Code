@@ -7,7 +7,7 @@ function Notification(props) {
     specialClasses = classes[props.status];
   }
 
-  const cssClasses = `${classes.Notification} ${specialClasses}`;
+  const cssClasses = `${classes.notification} ${specialClasses}`;
 
   return (
     <section className={cssClasses}>
@@ -16,3 +16,5 @@ function Notification(props) {
     </section>
   );
 }
+
+export default Notification;
