@@ -28,8 +28,8 @@ const cartSlice = createSlice({
 
       if (existingItem && existingItem.quantity > newItem.quantity) {
         existingItem.quantity -= newItem.quantity;
-      } else if (existingItem) {
-        state.items.pop(existingItem);
+      } else {
+        state.items = state.items.filter((item) => item.id !== newItem.id);
       }
 
       state.totalQuantity -= newItem.quantity;
