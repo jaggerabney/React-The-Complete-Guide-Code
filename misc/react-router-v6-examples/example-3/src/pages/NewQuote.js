@@ -7,13 +7,13 @@ import { addQuote } from "../lib/api";
 
 const NewQuote = () => {
   const { sendRequest, status } = useHttp(addQuote);
-  const navigation = useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (status === "completed") {
-      navigation.push("/quotes");
+      navigate("/quotes");
     }
-  }, [status, navigation]);
+  }, [status, navigate]);
 
   const addQuoteHandler = (quoteData) => {
     sendRequest(quoteData);
