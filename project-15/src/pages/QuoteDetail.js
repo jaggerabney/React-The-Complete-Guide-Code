@@ -1,17 +1,11 @@
+import { useEffect } from "react";
 import { Route, Link, useParams, useRouteMatch } from "react-router-dom";
-import useHttp from "../hooks/use-http";
 import { getSingleQuote } from "../lib/api";
+import useHttp from "../hooks/use-http";
 
 import HighlightedQuote from "../components/quotes/HighlightedQuote";
-import Comments from "../components/comments/Comments";
-import { useEffect } from "react";
 import LoadingSpinner from "../components/UI/LoadingSpinner";
-
-const DUMMY_QUOTES = [
-  { id: "q1", author: "Max", text: "Learning React is fun!" },
-  { id: "q2", author: "Jagger", text: "Learning React is great!" },
-  { id: "q3", author: "Kira", text: 'What the hell is a "React"?' },
-];
+import Comments from "../components/comments/Comments";
 
 function QuoteDetail(props) {
   const {

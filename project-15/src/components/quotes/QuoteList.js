@@ -1,4 +1,3 @@
-import { Fragment } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 
 import QuoteItem from "./QuoteItem";
