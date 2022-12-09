@@ -12,13 +12,20 @@ import PostDetailPage, { loader as blogPostLoader } from "./pages/PostDetail";
 import RootLayout from "./components/RootLayout";
 import WelcomePage from "./pages/Welcome";
 import ErrorPage from "./pages/ErrorPage";
+import DeferredBlogPostsPage, {
+  loader as deferredBlogPostsLoader,
+} from "./pages/DeferredBlogPosts";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayout />} errorElement={<ErrorPage />}>
       <Route index element={<WelcomePage />} />
       <Route path="/blog" element={<BlogLayout />}>
-        <Route index element={<BlogPostsPage />} loader={blogPostsLoader} />
+        <Route
+          index
+          element={<DeferredBlogPostsPage />}
+          loader={deferredBlogPostsLoader}
+        />
         <Route
           path=":id"
           element={<PostDetailPage />}
