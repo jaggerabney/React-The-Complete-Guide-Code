@@ -29,17 +29,6 @@ function MainNavigation() {
               Blog
             </NavLink>
           </li>
-          <li>
-            <NavLink
-              to="/newsletter"
-              className={({ isActive }) =>
-                isActive ? classes.active : undefined
-              }
-              end
-            >
-              Newsletter
-            </NavLink>
-          </li>
         </ul>
       </nav>
     </header>

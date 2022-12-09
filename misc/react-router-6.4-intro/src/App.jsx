@@ -38,7 +38,6 @@ const router = createBrowserRouter(
         element={<NewPostPage />}
         action={newPostAction}
       />
-      <Route path="/newsletter" element={<NewsletterSignup />} />
     </Route>
   )
 );
