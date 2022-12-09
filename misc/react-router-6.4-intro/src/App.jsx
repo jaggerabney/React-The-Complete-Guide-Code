@@ -15,6 +15,7 @@ import ErrorPage from "./pages/ErrorPage";
 import DeferredBlogPostsPage, {
   loader as deferredBlogPostsLoader,
 } from "./pages/DeferredBlogPosts";
+import NewsletterSignup from "./components/NewsletterSignup";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -37,6 +38,7 @@ const router = createBrowserRouter(
         element={<NewPostPage />}
         action={newPostAction}
       />
+      <Route path="/newsletter" element={<NewsletterSignup />} />
     </Route>
   )
 );
