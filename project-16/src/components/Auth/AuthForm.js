@@ -1,4 +1,5 @@
 import { useState, useRef, useContext } from "react";
+import { useHistory } from "react-router-dom";
 
 import API_KEY from "../../resources/api-key";
 
@@ -7,6 +8,8 @@ import AuthContext from "../../store/auth-context";
 import classes from "./AuthForm.module.css";
 
 const AuthForm = () => {
+  const history = useHistory();
+
   const authContext = useContext(AuthContext);
 
   const [isLogin, setIsLogin] = useState(true);
@@ -66,6 +69,7 @@ const AuthForm = () => {
       })
       .then((data) => {
         authContext.login(data.idToken);
+        history.replace("/");
       })
       .catch((error) => alert(error.message));
   }
