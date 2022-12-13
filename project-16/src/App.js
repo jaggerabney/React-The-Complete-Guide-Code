@@ -26,7 +26,6 @@ function App() {
         <Route path="/profile">
           {authContext.isLoggedIn && <UserProfile />}
           {!authContext.isLoggedIn && <Redirect to="/auth" />}
-          <UserProfile />
         </Route>
         <Route path="*">
           <Redirect to="/" />
