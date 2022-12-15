@@ -1,7 +1,7 @@
-import { Inter } from "@next/font/google";
+import MeetupList from "../components/meetups/MeetupList";
 
-const inter = Inter({ subsets: ["latin"] });
-
-export default function Home() {
-  return <h1>Meetup Page</h1>;
+function HomePage() {
+  return <MeetupList meetups={[]} />;
 }
+
+export default HomePage;
