@@ -1,4 +1,5 @@
 node_modules
 .eslintcache
 database-url.js
+connection-string.js
 api-key.js
