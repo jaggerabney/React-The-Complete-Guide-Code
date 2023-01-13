@@ -3,3 +3,4 @@ node_modules
 database-url.js
 connection-string.js
 api-key.js
+.env
