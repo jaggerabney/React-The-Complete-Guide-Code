@@ -1,8 +1,7 @@
 import { MongoClient, ObjectId } from "mongodb";
 import Head from "next/head";
-import { useRouter } from "next/router";
+
 import MeetupDetail from "../../components/meetups/MeetupDetail";
-import CONNECTION_STRING from "../../resources/connection-string";
 
 function MeetupDetails(props) {
   return (
@@ -22,7 +21,7 @@ function MeetupDetails(props) {
 }
 
 export async function getStaticPaths() {
-  const client = await MongoClient.connect(CONNECTION_STRING);
+  const client = await MongoClient.connect(process.env.CONNECTION_STRING);
   const db = client.db();
 
   const meetupsCollection = db.collection("meetups");
@@ -43,7 +42,7 @@ export async function getStaticPaths() {
 export async function getStaticProps(context) {
   const meetupId = context.params.meetupId;
 
-  const client = await MongoClient.connect(CONNECTION_STRING);
+  const client = await MongoClient.connect(process.env.CONNECTION_STRING);
   const db = client.db();
 
   const meetupsCollection = db.collection("meetups");

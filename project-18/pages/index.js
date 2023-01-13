@@ -1,9 +1,7 @@
 import { MongoClient } from "mongodb";
-
-import MeetupList from "../components/meetups/MeetupList";
 import Head from "next/head";
 
-import CONNECTION_STRING from "../resources/connection-string";
+import MeetupList from "../components/meetups/MeetupList";
 
 function HomePage(props) {
   return (
@@ -21,7 +19,7 @@ function HomePage(props) {
 }
 
 export async function getStaticProps() {
-  const client = await MongoClient.connect(CONNECTION_STRING);
+  const client = await MongoClient.connect(process.env.CONNECTION_STRING);
   const db = client.db();
 
   const meetupsCollection = db.collection("meetups");
