@@ -8,7 +8,9 @@ const modal = (props) => {
   return (
     <div className={cssClasses.join(" ")}>
       <h1>A Modal</h1>
-      <button onClick={props.closed}>Dismiss</button>
+      <button className="Button" onClick={props.closed}>
+        Dismiss
+      </button>
     </div>
   );
 };
