@@ -36,8 +36,9 @@ class App extends Component {
             });
           }}
         >
-          Toggle
+          Toggle Sqaure
         </button>
+        <br />
         <br />
         <Transition
           in={this.state.showBlock}
@@ -58,12 +59,16 @@ class App extends Component {
             />
           )}
         </Transition>
-        {this.state.modalIsOpen ? (
-          <Modal
-            show={this.state.modalIsOpen}
-            closed={this.hideModal.bind(this)}
-          />
-        ) : null}
+
+        <Transition
+          in={this.state.modalIsOpen}
+          timeout={300}
+          mountOnEnter
+          unmountOnExit
+        >
+          {(state) => <Modal show={state} closed={this.hideModal.bind(this)} />}
+        </Transition>
+
         {this.state.modalIsOpen ? (
           <Backdrop show={this.state.modalIsOpen} />
         ) : null}
