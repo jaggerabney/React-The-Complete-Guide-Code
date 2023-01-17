@@ -2,7 +2,7 @@ import { initStore } from "./store";
 
 function configureStore() {
   const actions = {
-    TOGGLE_FAV: (curState, productId) => {
+    TOGGLE_FAV: function (curState, productId) {
       const prodIndex = curState.products.findIndex((p) => p.id === productId);
 
       const newFavStatus = !curState.products[prodIndex].isFavorite;
@@ -13,7 +13,7 @@ function configureStore() {
         isFavorite: newFavStatus,
       };
 
-      return { products: curState.products };
+      return { products: updatedProducts };
     },
   };
 

@@ -16,13 +16,15 @@ export function useStore() {
     }
   }
 
+  console.log(globalState);
+
   useEffect(() => {
     listeners.push(setState);
 
     return () => {
       listeners = listeners.filter((li) => li !== setState);
     };
-  }, []);
+  }, [setState]);
 
   return [globalState, dispatch];
 }
