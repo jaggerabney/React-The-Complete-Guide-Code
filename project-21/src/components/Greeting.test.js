@@ -41,4 +41,17 @@ describe("Greeting component", () => {
     const changedElement = screen.getByText(/changed/i);
     expect(changedElement).toBeInTheDocument();
   });
+
+  test("Doesn't render \"It's good to see you!\" post-click", () => {
+    // Arrange
+    render(<Greeting />);
+
+    // Act
+    const buttonElement = screen.getByRole("button");
+    userEvent.click(buttonElement);
+
+    // Assert
+    const igtsyElement = screen.queryByText(/it's good to see you/i);
+    expect(igtsyElement).toBeNull();
+  });
 });
