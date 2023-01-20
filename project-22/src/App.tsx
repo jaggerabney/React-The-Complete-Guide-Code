@@ -16,10 +16,14 @@ export default function App() {
     setTodos((state) => [item, ...state]);
   }
 
+  function removeTodoHandler(id: string) {
+    setTodos((state) => state.filter((item) => item.id !== id));
+  }
+
   return (
     <>
       <NewTodo onAdd={addTodoHandler} />
-      <Todos items={todos} />
+      <Todos items={todos} onRemove={removeTodoHandler} />
     </>
   );
 }
