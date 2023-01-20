@@ -1,16 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 
+import NewTodo from "./components/NewTodo";
 import Todos from "./components/Todos";
+
 import Todo from "./models/todo";
 
-const DUMMY_TODOS: Todo[] = [
-  new Todo("Learn React!"),
-  new Todo("Learn TypeScript!"),
-  new Todo("Attend stand up!"),
-];
+export default function App() {
+  const [todos, setTodos] = useState<Todo[]>([
+    new Todo("Learn React!"),
+    new Todo("Learn TypeScript!"),
+    new Todo("Attend stand up!"),
+  ]);
 
-function App() {
-  return <Todos items={DUMMY_TODOS} />;
+  function addTodoHandler(item: Todo) {
+    setTodos((state) => [item, ...state]);
+  }
+
+  return (
+    <>
+      <NewTodo onAdd={addTodoHandler} />
+      <Todos items={todos} />
+    </>
+  );
 }
-
-export default App;
